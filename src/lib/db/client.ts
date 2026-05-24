@@ -1,6 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
-import { AuditInput, AuditResult } from "../lib/engine/types";
-import { runAudit } from "../lib/engine/analyzer";
+import { AuditInput, AuditResult } from "../engine/types";
+import { runAudit } from "../engine/analyzer";
 
 const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
 const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;

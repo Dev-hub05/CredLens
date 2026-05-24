@@ -7,8 +7,9 @@ const geminiApiKey = process.env.GEMINI_API_KEY;
 const genAI = geminiApiKey ? new GoogleGenerativeAI(geminiApiKey) : null;
 
 export async function POST(req: NextRequest) {
+  let auditResult: AuditResult | null = null;
   try {
-    const auditResult = (await req.json()) as AuditResult;
+    auditResult = (await req.json()) as AuditResult;
     if (!auditResult) {
       return NextResponse.json({ error: "Missing audit result data." }, { status: 400 });
     }
@@ -50,7 +51,9 @@ Focus on explaining where their biggest savings leverage is (e.g. redundant IDE 
 
   } catch (error) {
     console.error("Gemini API call failed, using fallback summary:", error);
-    const fallback = generateFallbackSummary(auditResult);
+    const fallback = auditResult
+      ? generateFallbackSummary(auditResult)
+      : "Your AI spend audit is ready. Consolidated billing and licensing recommendations have been compiled for review.";
     return NextResponse.json({ summary: fallback, mode: "fallback-error" });
   }
 }
