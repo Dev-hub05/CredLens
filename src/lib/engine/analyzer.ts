@@ -27,7 +27,6 @@ export function runAudit(input: AuditInput): AuditResult {
   const hasWindsurf = activeToolIds.has("windsurf");
   
   if (hasCursor && hasCopilot) {
-    const cursorInput = toolsMap.get("cursor")!;
     const copilotInput = toolsMap.get("copilot")!;
     
     // Cursor is an IDE containing its own autocompletion and agent capabilities, making Copilot redundant.
@@ -48,7 +47,6 @@ export function runAudit(input: AuditInput): AuditResult {
     activeToolIds.delete("copilot");
   } else if (hasWindsurf && hasCursor) {
     const windsurfInput = toolsMap.get("windsurf")!;
-    const cursorInput = toolsMap.get("cursor")!;
     
     // Windsurf and Cursor are directly overlapping AI IDEs. Keep Cursor as standard if mixed/coding, else recommend picking one.
     recommendations.push({
@@ -85,7 +83,6 @@ export function runAudit(input: AuditInput): AuditResult {
   // --- RULE 2: CHAT INTERFACE OVERLAPS (Claude vs ChatGPT vs Gemini) ---
   const hasClaude = activeToolIds.has("claude");
   const hasChatGPT = activeToolIds.has("chatgpt");
-  const hasGemini = activeToolIds.has("gemini");
   
   if (hasClaude && hasChatGPT) {
     const claudeInput = toolsMap.get("claude")!;
@@ -306,7 +303,6 @@ export function runAudit(input: AuditInput): AuditResult {
   let totalMonthlySavings = 0;
   
   // Calculate running optimized spend
-  const analyzedToolIds = new Set(recommendations.map(r => r.toolId));
   
   // Add savings from specific recommendations
   for (const rec of recommendations) {

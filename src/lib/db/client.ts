@@ -33,7 +33,7 @@ export const db: DBClient = {
     };
 
     if (isSupabaseConfigured && supabase) {
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from("audits")
         .insert({
           id,

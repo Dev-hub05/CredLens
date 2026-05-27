@@ -1,193 +1,191 @@
 import Link from "next/link";
 import Navbar from "../components/Navbar";
-import { ArrowRight, ShieldCheck, Zap, Activity, HelpCircle, AlertTriangle } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="min-h-screen flex flex-col bg-zinc-950 text-white selection:bg-white selection:text-black">
+    <div className="min-h-screen flex flex-col bg-zinc-950 text-white relative overflow-hidden">
+      {/* Ambient background glow rings */}
+      <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[500px] bg-emerald-500/5 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute bottom-[20%] right-[-10%] w-[60%] h-[600px] bg-teal-500/5 rounded-full blur-[200px] pointer-events-none" />
+
       <Navbar />
 
-      {/* Hero Section */}
-      <main className="flex-1 flex flex-col items-center pt-20 pb-24 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto w-full text-center space-y-16">
-        
-        {/* Headline & Pitch */}
-        <div className="space-y-6 max-w-3xl mx-auto">
-          <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-zinc-400 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full">
-            <Zap className="h-3.5 w-3.5 text-yellow-400 fill-yellow-400/20" />
-            Optimize your SaaS overhead immediately
-          </span>
-          
-          <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-white leading-[1.05]">
-            You're Probably Overspending on AI
+      <main className="flex-1 flex flex-col items-center px-4 sm:px-6 relative z-10">
+
+        {/* Hero */}
+        <section className="pt-24 sm:pt-36 pb-20 text-center max-w-4xl mx-auto">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/5 text-xs text-emerald-400 font-medium mb-8 shadow-[0_0_15px_rgba(16,185,129,0.05)]">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <span>Free AI Spend Audit</span>
+          </div>
+
+          <h1 className="text-5xl sm:text-7xl font-extrabold tracking-tight leading-[1.05] bg-gradient-to-b from-white via-zinc-100 to-zinc-400 bg-clip-text text-transparent">
+            Stop Overpaying for <br className="hidden sm:inline" />
+            <span className="bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
+              AI Tools
+            </span>
           </h1>
-          
-          <p className="max-w-xl mx-auto text-base sm:text-lg text-zinc-450 leading-relaxed font-normal text-zinc-400">
-            Audit Cursor, Claude, ChatGPT, and API spend in 60 seconds.
+
+          <p className="mt-6 text-lg text-zinc-400 leading-relaxed max-w-2xl mx-auto">
+            Audit your Cursor, Claude, ChatGPT &amp; API spend in 60 seconds.
+            Get actionable savings — no signup required.
           </p>
 
-          <div className="pt-4 flex flex-wrap justify-center items-center gap-4">
+          <div className="mt-10">
             <Link
               href="/audit"
-              className="group inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3.5 text-base font-bold text-black hover:bg-zinc-100 transition-all active:scale-98"
+              className="inline-block bg-gradient-to-r from-emerald-400 to-teal-400 hover:from-emerald-500 hover:to-teal-500 text-zinc-950 text-base font-semibold px-8 py-4 rounded-xl shadow-[0_4px_20px_rgba(16,185,129,0.15)] hover:shadow-[0_4px_25px_rgba(16,185,129,0.3)] transition-all duration-300 transform hover:-translate-y-0.5"
             >
-              Run Free Audit
-              <ArrowRight className="h-5 w-5 text-zinc-650 group-hover:translate-x-0.5 transition-transform" />
-            </Link>
-            <Link
-              href="#faq"
-              className="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-zinc-900/60 px-6 py-3.5 text-base font-semibold text-zinc-300 hover:text-white hover:bg-zinc-800 transition-all"
-            >
-              How It Works
+              Start Free Audit →
             </Link>
           </div>
-        </div>
 
-        {/* INTERACTIVE DEMO FEEL - MOCK REPORT SCREENSHOT PREVIEW */}
-        <div className="relative w-full max-w-4xl mx-auto rounded-2xl border border-white/10 bg-zinc-900/40 p-4 sm:p-6 glow-indigo overflow-hidden">
-          {/* Header Bar */}
-          <div className="flex items-center justify-between border-b border-white/5 pb-4 mb-6">
-            <div className="flex items-center gap-2.5">
-              <span className="h-3 w-3 rounded-full bg-zinc-800" />
-              <span className="h-3 w-3 rounded-full bg-zinc-800" />
-              <span className="h-3 w-3 rounded-full bg-zinc-800" />
-              <span className="text-xs font-semibold text-zinc-500 font-mono pl-2">CRED-LENS-DEMO-2026.report</span>
-            </div>
-            <span className="text-xs font-semibold text-emerald-400 uppercase tracking-widest bg-emerald-500/10 px-2 rounded border border-emerald-500/20">
-              Mock Analysis
-            </span>
-          </div>
-
-          {/* Dummy Results */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
-            <div className="rounded-xl border border-white/5 bg-zinc-950/60 p-4">
-              <span className="block text-[10px] font-bold text-zinc-500 uppercase tracking-wider">Identified Savings</span>
-              <span className="block text-3xl font-extrabold text-emerald-400 font-mono mt-1">$125/mo</span>
-              <span className="block text-[10px] text-zinc-500 mt-1">Consolidation of Cursor & Copilot</span>
-            </div>
-            <div className="rounded-xl border border-white/5 bg-zinc-950/60 p-4">
-              <span className="block text-[10px] font-bold text-zinc-500 uppercase tracking-wider">Annual Value</span>
-              <span className="block text-3xl font-extrabold text-emerald-400 font-mono mt-1">$1,500/yr</span>
-              <span className="block text-[10px] text-zinc-500 mt-1">Added operating cash flow</span>
-            </div>
-            <div className="rounded-xl border border-white/5 bg-zinc-950/60 p-4">
-              <span className="block text-[10px] font-bold text-zinc-500 uppercase tracking-wider">Health Index</span>
-              <span className="block text-3xl font-extrabold text-white font-mono mt-1">72%</span>
-              <span className="block text-[10px] text-zinc-500 mt-1">Moderate license redundancy</span>
-            </div>
-          </div>
-
-          {/* Fake Recommendation Snippet */}
-          <div className="mt-4 border border-white/5 bg-zinc-950/40 rounded-xl p-4 text-left space-y-2">
-            <div className="flex items-center justify-between text-xs">
-              <div className="flex items-center gap-2">
-                <span className="font-bold text-white">GitHub Copilot</span>
-                <span className="bg-red-500/10 text-red-400 px-1.5 py-0.5 rounded text-[10px] uppercase font-bold">Replace</span>
-              </div>
-              <span className="text-emerald-400 font-mono font-bold">+$20/mo savings</span>
-            </div>
-            <p className="text-xs text-zinc-400 leading-relaxed">
-              Consolidate Copilot into Cursor. Your team is paying for both Cursor and Copilot. Cursor includes high-quality autocomplete and native AI chat, rendering standalone Copilot redundant.
-            </p>
-          </div>
-        </div>
-
-        {/* SOCIAL PROOF BLOCK */}
-        <div id="features" className="space-y-6 pt-10">
-          <p className="text-xs font-semibold text-zinc-500 uppercase tracking-widest">
-            Loved by seed founders & early builders
+          <p className="mt-4 text-xs text-zinc-600">
+            No account needed · Results in 60 seconds
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto text-left">
-            <div className="border border-white/5 bg-zinc-900/30 rounded-xl p-5 space-y-3">
-              <p className="text-zinc-300 text-sm leading-relaxed">
-                "We saved $180/mo in under two minutes. Realized we had four developers paying for both Cursor and standalone Copilot licenses."
-              </p>
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-bold text-white">M.K.</span>
-                <span className="text-[10px] text-zinc-500">Founder, Pre-Seed DevTool</span>
-              </div>
-            </div>
-            <div className="border border-white/5 bg-zinc-900/30 rounded-xl p-5 space-y-3">
-              <p className="text-zinc-300 text-sm leading-relaxed">
-                "Our AI API bill was hitting $4k. The caching suggestions on CredLens alone showed us how to cut input token spend by 40%."
-              </p>
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-bold text-white">L.D.</span>
-                <span className="text-[10px] text-zinc-500">AI Architect, Series A HealthTech</span>
-              </div>
-            </div>
-            <div className="border border-white/5 bg-zinc-900/30 rounded-xl p-5 space-y-3">
-              <p className="text-zinc-300 text-sm leading-relaxed">
-                "We were overpaying on Claude Team seat minimums for a team of three. Switching to Pro saved us a clean $85 every month."
-              </p>
-              <div className="flex items-center gap-2">
-                <span className="text-xs font-bold text-white">A.S.</span>
-                <span className="text-[10px] text-zinc-500">Lead Dev, Seed FinTech</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        </section>
 
-        {/* FAQ SECTION */}
-        <div id="faq" className="space-y-8 pt-10 text-left max-w-3xl mx-auto">
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-white text-center">Frequently Asked Questions</h2>
-          
-          <div className="space-y-4">
-            <div className="border border-white/5 bg-zinc-900/20 rounded-xl p-5 space-y-2">
-              <h4 className="text-sm font-bold text-white flex items-center gap-2">
-                <HelpCircle className="h-4 w-4 text-emerald-400" />
-                Why should I audit my team's AI spend?
-              </h4>
-              <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed">
-                Most startups deploy AI tools piece-meal. Individual developers request Cursor, managers assign Copilot, and product teams spin up ChatGPT Team plans. This results in heavy overlap, double-licensing the exact same LLM capabilities, and paying seat minimum penalties.
+        {/* How It Works */}
+        <section id="how-it-works" className="py-24 w-full max-w-4xl mx-auto border-t border-zinc-900/60">
+          <p className="text-xs uppercase tracking-widest text-emerald-500/70 font-semibold text-center mb-16">
+            How It Works
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="group p-6 rounded-2xl bg-zinc-900/20 border border-zinc-900 hover:border-zinc-800 transition-all duration-300">
+              <span className="text-5xl font-black bg-gradient-to-br from-emerald-400/20 to-teal-500/20 bg-clip-text text-transparent group-hover:from-emerald-400 group-hover:to-teal-400 transition-all duration-500">01</span>
+              <h3 className="text-lg font-semibold text-white mt-4">Input Your Stack</h3>
+              <p className="text-sm text-zinc-400 mt-2 leading-relaxed">
+                Tell us what AI tools your team pays for, which plans, and how many seats.
               </p>
             </div>
-
-            <div className="border border-white/5 bg-zinc-900/20 rounded-xl p-5 space-y-2">
-              <h4 className="text-sm font-bold text-white flex items-center gap-2">
-                <HelpCircle className="h-4 w-4 text-emerald-400" />
-                Does CredLens use AI for cost calculations?
-              </h4>
-              <p className="text-zinc-450 text-xs sm:text-sm leading-relaxed text-zinc-400">
-                No. Cost calculations and plan optimization benchmarks use a fully deterministic, finance-literate rule engine. Financial audit results must be explainable, accurate, and reproducible. We utilize LLMs solely to synthesize the findings into a personalized text summary.
+            <div className="group p-6 rounded-2xl bg-zinc-900/20 border border-zinc-900 hover:border-zinc-800 transition-all duration-300">
+              <span className="text-5xl font-black bg-gradient-to-br from-emerald-400/20 to-teal-500/20 bg-clip-text text-transparent group-hover:from-emerald-400 group-hover:to-teal-400 transition-all duration-500">02</span>
+              <h3 className="text-lg font-semibold text-white mt-4">Get Your Audit</h3>
+              <p className="text-sm text-zinc-400 mt-2 leading-relaxed">
+                Our deterministic engine benchmarks your spend against optimal configurations.
               </p>
             </div>
-
-            <div className="border border-white/5 bg-zinc-900/20 rounded-xl p-5 space-y-2">
-              <h4 className="text-sm font-bold text-white flex items-center gap-2">
-                <HelpCircle className="h-4 w-4 text-emerald-400" />
-                What is the connection between CredLens and Credex?
-              </h4>
-              <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed">
-                CredLens is a free tooling asset built by Credex. Credex provides discounted AI infrastructure credits sourced from companies that overforecast compute commitments. If your audit reveals high savings opportunities, Credex provides the credit sourcing to claim those discounts.
-              </p>
-            </div>
-
-            <div className="border border-white/5 bg-zinc-900/20 rounded-xl p-5 space-y-2">
-              <h4 className="text-sm font-bold text-white flex items-center gap-2">
-                <HelpCircle className="h-4 w-4 text-emerald-400" />
-                Are my company details secure?
-              </h4>
-              <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed">
-                Absolutely. We do not require any account signup or login to generate an audit. Private contact information (emails or companies) is captured separately and fully stripped from all public shared audit report URL previews.
-              </p>
-            </div>
-
-            <div className="border border-white/5 bg-zinc-900/20 rounded-xl p-5 space-y-2">
-              <h4 className="text-sm font-bold text-white flex items-center gap-2">
-                <HelpCircle className="h-4 w-4 text-emerald-400" />
-                How current is the pricing data?
-              </h4>
-              <p className="text-zinc-400 text-xs sm:text-sm leading-relaxed">
-                Our database is updated continuously to match official developer pricing sheets (e.g. Cursor Pro $20, Claude Team $25, ChatGPT Business $25/mo). Specific verification dates and sources are transparently documented in our database references.
+            <div className="group p-6 rounded-2xl bg-zinc-900/20 border border-zinc-900 hover:border-zinc-800 transition-all duration-300">
+              <span className="text-5xl font-black bg-gradient-to-br from-emerald-400/20 to-teal-500/20 bg-clip-text text-transparent group-hover:from-emerald-400 group-hover:to-teal-400 transition-all duration-500">03</span>
+              <h3 className="text-lg font-semibold text-white mt-4">Save Money</h3>
+              <p className="text-sm text-zinc-400 mt-2 leading-relaxed">
+                See exactly where to downgrade, consolidate, or switch — with dollar amounts.
               </p>
             </div>
           </div>
-        </div>
+        </section>
 
+        {/* Social Proof */}
+        <section id="proof" className="py-24 w-full max-w-4xl mx-auto border-t border-zinc-900/60">
+          <p className="text-xs uppercase tracking-widest text-emerald-500/70 font-semibold text-center mb-16">
+            What founders are saying
+          </p>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="border border-zinc-800/80 rounded-2xl p-6 bg-gradient-to-b from-zinc-900/40 to-zinc-950/60 shadow-[0_4px_20px_rgba(0,0,0,0.3)] hover:border-zinc-700/80 hover:shadow-[0_4px_30px_rgba(0,0,0,0.5)] transition-all duration-300 transform hover:-translate-y-0.5">
+              <p className="text-sm text-zinc-300 italic leading-relaxed">
+                &ldquo;Saved $180/mo in under two minutes. We had four devs paying for both Cursor and Copilot.&rdquo;
+              </p>
+              <div className="mt-6 flex items-center gap-2">
+                <span className="text-sm font-bold text-white">M.K.</span>
+                <span className="text-xs text-zinc-500">— Founder, Pre-Seed DevTool</span>
+              </div>
+            </div>
+
+            <div className="border border-zinc-800/80 rounded-2xl p-6 bg-gradient-to-b from-zinc-900/40 to-zinc-950/60 shadow-[0_4px_20px_rgba(0,0,0,0.3)] hover:border-zinc-700/80 hover:shadow-[0_4px_30px_rgba(0,0,0,0.5)] transition-all duration-300 transform hover:-translate-y-0.5">
+              <p className="text-sm text-zinc-300 italic leading-relaxed">
+                &ldquo;The caching suggestions alone showed us how to cut API token spend by 40%.&rdquo;
+              </p>
+              <div className="mt-6 flex items-center gap-2">
+                <span className="text-sm font-bold text-white">L.D.</span>
+                <span className="text-xs text-zinc-500">— AI Architect, Series A HealthTech</span>
+              </div>
+            </div>
+
+            <div className="border border-zinc-800/80 rounded-2xl p-6 bg-gradient-to-b from-zinc-900/40 to-zinc-950/60 shadow-[0_4px_20px_rgba(0,0,0,0.3)] hover:border-zinc-700/80 hover:shadow-[0_4px_30px_rgba(0,0,0,0.5)] transition-all duration-300 transform hover:-translate-y-0.5">
+              <p className="text-sm text-zinc-300 italic leading-relaxed">
+                &ldquo;Switching from Claude Team to Pro saved us $85/mo for a three-person team.&rdquo;
+              </p>
+              <div className="mt-6 flex items-center gap-2">
+                <span className="text-sm font-bold text-white">A.S.</span>
+                <span className="text-xs text-zinc-500">— Lead Dev, Seed FinTech</span>
+              </div>
+            </div>
+          </div>
+
+          <p className="text-[10px] text-zinc-600 text-center mt-8">
+            (Mocked social proof for demonstration)
+          </p>
+        </section>
+
+        {/* FAQ */}
+        <section id="faq" className="py-24 w-full max-w-2xl mx-auto border-t border-zinc-900/60">
+          <h2 className="text-2xl font-bold text-white text-center mb-12">
+            Frequently Asked Questions
+          </h2>
+
+          <div className="divide-y divide-zinc-900">
+            <details className="group py-5">
+              <summary className="flex items-center justify-between text-base font-medium text-white transition-colors duration-200 hover:text-emerald-400">
+                Why should I audit my AI spend?
+                <span className="text-zinc-500 group-open:rotate-45 transition-transform duration-300 text-xl leading-none">+</span>
+              </summary>
+              <p className="mt-3 text-sm text-zinc-400 leading-relaxed pl-1">
+                Most startups deploy AI tools piecemeal — individual devs get Cursor, managers assign Copilot,
+                product teams spin up ChatGPT Team plans. The result is overlapping licenses and wasted seat minimums.
+              </p>
+            </details>
+
+            <details className="group py-5">
+              <summary className="flex items-center justify-between text-base font-medium text-white transition-colors duration-200 hover:text-emerald-400">
+                Does CredLens use AI for the calculations?
+                <span className="text-zinc-500 group-open:rotate-45 transition-transform duration-300 text-xl leading-none">+</span>
+              </summary>
+              <p className="mt-3 text-sm text-zinc-400 leading-relaxed pl-1">
+                No. All cost calculations use a deterministic rules engine. Financial results must be accurate
+                and reproducible. We only use AI to generate a personalized text summary of findings.
+              </p>
+            </details>
+
+            <details className="group py-5">
+              <summary className="flex items-center justify-between text-base font-medium text-white transition-colors duration-200 hover:text-emerald-400">
+                What&apos;s the connection to Credex?
+                <span className="text-zinc-500 group-open:rotate-45 transition-transform duration-300 text-xl leading-none">+</span>
+              </summary>
+              <p className="mt-3 text-sm text-zinc-400 leading-relaxed pl-1">
+                CredLens is a free tool by Credex. Credex sources discounted AI infrastructure credits from
+                companies that overforecast compute. If your audit shows big savings, Credex can help capture them.
+              </p>
+            </details>
+
+            <details className="group py-5">
+              <summary className="flex items-center justify-between text-base font-medium text-white transition-colors duration-200 hover:text-emerald-400">
+                Is my data secure?
+                <span className="text-zinc-500 group-open:rotate-45 transition-transform duration-300 text-xl leading-none">+</span>
+              </summary>
+              <p className="mt-3 text-sm text-zinc-400 leading-relaxed pl-1">
+                Yes. No account or login required. Contact information is captured separately and stripped
+                from all public shared report URLs.
+              </p>
+            </details>
+
+            <details className="group py-5">
+              <summary className="flex items-center justify-between text-base font-medium text-white transition-colors duration-200 hover:text-emerald-400">
+                How current is the pricing?
+                <span className="text-zinc-500 group-open:rotate-45 transition-transform duration-300 text-xl leading-none">+</span>
+              </summary>
+              <p className="mt-3 text-sm text-zinc-400 leading-relaxed pl-1">
+                Updated continuously against official vendor pricing pages. All sources documented in our
+                pricing database with verification dates.
+              </p>
+            </details>
+          </div>
+        </section>
       </main>
 
-      <footer className="border-t border-white/5 bg-zinc-950 py-8 text-center text-xs text-zinc-500 leading-normal">
-        <p>© 2026 CredLens — Powered by Credex. Sourcing surplus compute credits at startup economics.</p>
+      <footer className="border-t border-zinc-900/60 py-10 text-center relative z-10 bg-zinc-950/80">
+        <p className="text-xs text-zinc-600">© 2026 CredLens — A Credex product</p>
       </footer>
     </div>
   );

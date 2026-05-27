@@ -6,8 +6,6 @@ import { db } from "../../lib/db/client";
 import { AuditInput } from "../../lib/engine/types";
 import Navbar from "../../components/Navbar";
 import AuditForm from "../../components/AuditForm";
-import { ShieldCheck, BarChart3, Database } from "lucide-react";
-import { isSupabaseConfigured } from "../../lib/db/client";
 
 export default function AuditPage() {
   const router = useRouter();
@@ -18,51 +16,36 @@ export default function AuditPage() {
     try {
       const savedAudit = await db.saveAudit(input);
       if (savedAudit.id) {
-        // Navigate to the results page
         router.push(`/audit/${savedAudit.id}`);
       } else {
         alert("Failed to save audit result.");
       }
     } catch (e) {
       console.error(e);
-      alert("Error submitting audit stack.");
+      alert("Error submitting audit. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-zinc-950 text-white selection:bg-white selection:text-black">
-      <Navbar />
+    <div className="min-h-screen flex flex-col bg-zinc-950 text-white relative overflow-hidden">
+      {/* Ambient background glows */}
+      <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[500px] bg-emerald-500/5 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute bottom-[20%] right-[-10%] w-[60%] h-[600px] bg-teal-500/5 rounded-full blur-[200px] pointer-events-none" />
 
-      <main className="flex-1 flex flex-col items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-        <div className="w-full max-w-4xl space-y-8 text-center">
-          <div className="space-y-4">
-            <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-none">
-              AI Spend Auditor
+      <Navbar />
+      <main className="flex-1 flex flex-col items-center py-16 px-4 sm:px-6 relative z-10">
+        <div className="w-full max-w-2xl">
+          <div className="text-center mb-12">
+            <h1 className="text-3xl sm:text-4xl font-extrabold tracking-tight bg-gradient-to-b from-white to-zinc-400 bg-clip-text text-transparent">
+              Audit Your AI Spend
             </h1>
-            <p className="max-w-xl mx-auto text-sm sm:text-base text-zinc-400">
-              Complete the quick configuration wizard to identify double licensing, seat count waste, and direct API optimizations.
+            <p className="mt-3 text-sm text-zinc-400 max-w-md mx-auto">
+              Answer a few questions about your team&apos;s AI tools. Takes under 60 seconds.
             </p>
           </div>
-
           <AuditForm onSubmit={handleSubmit} isSubmitting={isSubmitting} />
-
-          {/* Security & Offline Badges */}
-          <div className="flex flex-wrap justify-center items-center gap-4 text-xs font-medium text-zinc-500 pt-4">
-            <span className="flex items-center gap-1.5 border border-white/5 bg-white/5 px-3 py-1.5 rounded-full">
-              <ShieldCheck className="h-4 w-4 text-emerald-400" />
-              100% Secure & Compliant
-            </span>
-            <span className="flex items-center gap-1.5 border border-white/5 bg-white/5 px-3 py-1.5 rounded-full">
-              <BarChart3 className="h-4 w-4 text-emerald-400" />
-              Optimized for 2026 Tiers
-            </span>
-            <span className="flex items-center gap-1.5 border border-white/5 bg-white/5 px-3 py-1.5 rounded-full">
-              <Database className="h-4 w-4 text-emerald-400" />
-              Database Mode: {isSupabaseConfigured ? "Connected (Supabase)" : "Offline (Local Storage)"}
-            </span>
-          </div>
         </div>
       </main>
     </div>
